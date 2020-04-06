@@ -1,0 +1,44 @@
+@font-face{
+	font-family: "Lato-Regular.ttf";
+	src: url("fonts/Lato-Regular.tt");
+	src: url("fonts/Lato-Bold.tt");
+
+}
+
+h1{
+	font-family: Lato-Regular;
+}
+
+h2{
+	font-family: Lato-Regular;
+	font-weight: normal;
+}
+
+legend{
+	font-family: Lato-Regular;
+}
+
+#getWeather{
+	font-family: Lato-Regular;
+}
+
+#weather{
+	font-family: Lato-Regular;
+}
+
+#box4 > h1{
+	font-weight: normal;
+}
+
+#newshead1, #newshead2, #newshead3, #newshead4 {
+	font-family: Lato-Regular;
+	color:#DD8F44;
+}
+
+
+#newsdis1, #newsdis2, #newsdis3, #newsdis4{
+font-family: Lato-Regular;
+color: #707070;
+
+}
+

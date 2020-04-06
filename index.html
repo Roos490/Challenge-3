@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title> Dashboard Landing</title>
+	<link rel="stylesheet" type="text/css" href="_css/style.css"></li>
+	<link rel="stylesheet" type="text/css" href="_css/fonts.css"></link>
+	<script src="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.js"></script>
+	<link href="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css" rel="stylesheet" />
+	<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFK5cQhRRkFO-m7390i0THYKMVpbLcTGE&callback=initMap" async defer> -->
+	 </script>
+</script>
+	<script type="text/javascript" src="_js/api.js" defer ></script>
+</head>
+<body>
+	<div id="grid" class="container">
+		<section id="box1"> 
+			<hgroup>
+				<h1> Welcome Back!</h1>
+				<h2> Find a save landing place</h2>
+			</hgroup>
+		</section>
+		<section id="box2">
+			<form>
+				<fieldset>
+					<legend>Enter city name, to see the <span style="color:  #DD8F44;">current weather</span> </legend>
+					<label for="city"></label>
+					<input type="text" name="city" id="city" placeholder=" City name" />
+					<input type="button" id="getWeather" value="Show me!"/>
+				<article id="weather"></article>
+				</fieldset>
+			</form>
+		</section>
+		<section id="box3">
+			<div id="map"></div>
+		</section>
+		<section id="box4">
+			<h1>In case you missed the News - New York Times</h1>
+			<div class="news" id="news1">
+				<div id="newshead1"></div>
+   				<div id="newsdis1"></div>
+			</div>
+			<div class="news" id="news2">
+				<div id="newshead2"></div>
+   				<div id="newsdis2"></div>
+			</div>
+			<div class="news" id="news3">
+				<div id="newshead3"></div>
+   				<div id="newsdis3"></div>
+			</div>
+			<div class="news" id="news4">
+				<div id="newshead4"></div>
+   				<div id="newsdis4"></div>
+			</div>
+		</section>
+	</div>
+</body>
+</html>
