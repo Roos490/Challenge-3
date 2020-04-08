@@ -5,26 +5,25 @@ function getAPIdata() {
 	var apiKey ='d6d8593c3c9cf34b5fb0b2b7f8c8138f';
 	var city = document.getElementById('city').value;
 
-	// construct request
+
 	var request = url + '?' + 'appid=' + apiKey + '&' + 'q=' + city;
-	
-	// get current weather
+
 	fetch(request)
 	
-	// parse to JSON format
+
 	.then(function(response) {
 		if(!response.ok) throw Error(response.statusText);
 		return response.json();
 	})
 	
-	// render weather per day
+
 	.then(function(response) {
-		// render weatherCondition
+
 		console.log(response);
 		onAPISucces(response);	
 	})
 	
-	// catch error
+
 	.catch(function (error) {
 		onAPIError(error);
 	});
@@ -32,15 +31,15 @@ function getAPIdata() {
 
 
 function onAPISucces(response) {
-	// get type of weather in string format
+
 	var type = response.weather[0].description;
 	var icon = response.weather[0].icon;
 	var city = document.getElementById('city').value;
 
-	// get temperature in Celcius
+	
 	var degC = Math.floor(response.main.temp - 273.15);
 
-	// render weather in DOM
+
 	var weatherBox = document.getElementById('weather');
 	weatherBox.innerHTML = '  In ' + city + ' it is ' + degC + '&#176;C ' + ' and '+ type;
 	plaatje = '<div class=plaatje">';
@@ -56,7 +55,7 @@ function onAPIError(error) {
 }
 
 document.getElementById('getWeather').onclick = function(){
-	// init data stream
+	
 	getAPIdata();
 };
 
@@ -65,23 +64,22 @@ document.getElementById('getWeather').onclick = function(){
 
 function getAPIdata2() {
 
-  // construct request
+
   var request = 'https://api.nytimes.com/svc/topstories/v2/world.json?api-key=I1eoReqW62Jcv3srNNiTmlo0Wn7zLr8K';
 
-  // get current weather
   fetch(request)  
   
-  // parse response to JSON format
+
   .then(function(response) {
     return response.json();
   })
   
-  // do something with response
+
   .then(function(response) {
-    // show full JSON object
+
     console.log(response);
 
-    ///first headline
+
    var newshead1 = document.getElementById('newshead1');
    newshead1.innerHTML = response.results[0].title;
   var newsdis1 = document.getElementById('newsdis1');
@@ -113,39 +111,74 @@ function getAPIdata2() {
   });
 }
 
-// init data stream
+
 getAPIdata2();
 
+var openWeatherMapUrl = 'https://api.openweathermap.org/data/2.5/weather';
+var openWeatherMapUrlApiKey = 'd6d8593c3c9cf34b5fb0b2b7f8c8138f';
 
-// var myMap;
 
-// function initMap() {
-// 	// set options for map 
-// 	var mapOptions = {
-// 		center: {
-// 			lat: 52.067514882683064, 
-// 			lng: 4.3238686164587
-// 		},
-// 		zoom: 14,
-// 		mapTypeId: 'hybrid'
-// 	};
+var cities = [
+  {
+    name: 'Groningen',
+    coordinates: [6.573644, 53.219375]
+  },
+  {
+    name: 'Leeuwarden',
+    coordinates: [5.785546, 53.205116]
+  },
+  {
+    name: 'Assen',
+    coordinates: [6.564228, 52.992753]
+  },
+  {
+    name: 'Zwolle',
+    coordinates: [6.086340, 52.514162]
+  },
+  {
+    name: 'Lelystad',
+    coordinates: [5.466621, 52.515990]
+  },
+  {
+    name: 'Arnhem',
+    coordinates: [5.898730, 51.985103]
+  },{
+    name: 'Utrecht',
+    coordinates: [5.121420, 52.090737]
+  },{
+    name: 'Haarlem',
+    coordinates: [4.646219, 52.387388]
+  },{
+    name: 'Den haag',
+    coordinates: [4.300700, 52.070498]
+  },
+  {
+    name: 'Middelburg',
+    coordinates: [3.610998, 51.498796]
+  },
+  {
+    name: 'Den Bosch',
+    coordinates: [5.303675, 51.697816]
+  },
+  {
+    name: 'Maastricht',
+    coordinates: [5.690972, 50.851368]
+  },
+];
 
-// 	// create map and add to page
-// 	myMap = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-// }
 
 
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoicm9vczAzMDMiLCJhIjoiY2s4azQ3a2p6MDFxeDNlazNhMWkyczViOCJ9.5ouITJINn2gzkTBpIoO2Yg';
     var map = new mapboxgl.Map({
-        container: 'map', // container id
-        style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
-        center: [4.8936041, 52.3727598], // starting position [lng, lat]
-        zoom: 6 // starting zoom
+        container: 'map', 
+        style: 'mapbox://styles/roos0303/ck8rbe3uz11l31iql59ec50jo', 
+        center: [4.8936041, 52.3727598], 
+        zoom: 6 
     });
 
-    var nav = new mapboxgl.NavigationControl();
+ var nav = new mapboxgl.NavigationControl();
 map.addControl(nav, 'top-left');
 
 map.on('load', function() {
@@ -265,7 +298,7 @@ map.addSource('places', {
 ]
 }
 });
-// Add a layer showing the places.
+
 map.addLayer({
 'id': 'places',
 'type': 'symbol',
@@ -275,16 +308,13 @@ map.addLayer({
 'icon-allow-overlap': true
 }
 });
- 
-// When a click event occurs on a feature in the places layer, open a popup at the
-// location of the feature, with description HTML from its properties.
+
+
 map.on('click', 'places', function(e) {
 var coordinates = e.features[0].geometry.coordinates.slice();
 var description = e.features[0].properties.description;
  
-// Ensure that if the map is zoomed out such that multiple
-// copies of the feature are visible, the popup appears
-// over the copy being pointed to.
+
 while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
 coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
 }
@@ -294,17 +324,67 @@ new mapboxgl.Popup()
 .setHTML(description)
 .addTo(map);
 });
- 
-// Change the cursor to a pointer when the mouse is over the places layer.
+
 map.on('mouseenter', 'places', function() {
 map.getCanvas().style.cursor = 'pointer';
 });
  
-// Change it back to a pointer when it leaves.
+
 map.on('mouseleave', 'places', function() {
 map.getCanvas().style.cursor = '';
 });
 });
 
+map.on('load', function () {
+  cities.forEach(function(city) {
+
+    var request = openWeatherMapUrl + '?' + 'appid=' + openWeatherMapUrlApiKey + '&lon=' + city.coordinates[0] + '&lat=' + city.coordinates[1];
+
+
+    fetch(request)
+      .then(function(response) {
+        if(!response.ok) throw Error(response.statusText);
+        return response.json();
+      })
+      .then(function(response) {
+
+        plotImageOnMap(response.weather[0].icon, city)
+      })
+      .catch(function (error) {
+        console.log('ERROR:', error);
+      });
+  });
+});
+function plotImageOnMap(icon, city) {
+  map.loadImage(
+    'http://openweathermap.org/img/w/' + icon + '.png',
+    function (error, image) {
+      if (error) throw error;
+      map.addImage("weatherIcon_" + city.name, image);
+      map.addSource("point_" + city.name, {
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: [{
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: city.coordinates
+            }
+          }]
+        }
+      });
+      map.addLayer({
+        id: "points_" + city.name,
+        type: "symbol",
+        source: "point_" + city.name,
+        layout: {
+          "icon-image": "weatherIcon_" + city.name,
+          "icon-size": 0.5
+        }
+      });
+    }
+  );
+}
 
 
